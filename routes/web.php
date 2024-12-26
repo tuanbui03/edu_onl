@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
@@ -140,3 +141,13 @@ Route::get('admin/create_user', function () {
 Route::get('admin/create_courses', function () {
     return view('admin/create_courses');
 })->name('create_courses');
+
+
+Route::get('/db-test', function () {
+    try {
+        DB::connection()->getPdo();
+        return 'Kết nối cơ sở dữ liệu thành công!';
+    } catch (\Exception $e) {
+        return 'Không thể kết nối cơ sở dữ liệu: ' . $e->getMessage();
+    }
+});
