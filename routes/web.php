@@ -65,21 +65,21 @@ Route::get('/watch_video', function () {
 
 
 
-Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [LoginController::class, 'login']);
-Route::post('admin/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin', function () {
         return view('admin.index');
     })->name('admin.index');
 });
 
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-
-
-Route::get('admin/index', function () {
-    return view('admin/index');
-})->name('index');
 
 Route::get('admin/view_teacher', function () {
     return view('admin/view_teacher');

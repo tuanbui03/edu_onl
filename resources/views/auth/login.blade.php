@@ -12,13 +12,13 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Login</h1>
-        <form method="POST" action="{{ route('login') }}">
+        <form action="{{ route('admin.login') }}" method="POST">
             @csrf
             <!-- Email Address -->
             <div class="mb-3">
                 <label for="username" class="form-label">User Name</label>
                 <input type="username" class="form-control" id="username" name="username"
-                    placeholder="Enter your username" value="{{ old('email') }}" required>
+                    placeholder="Enter your username" required>
             </div>
 
             <!-- Password -->
