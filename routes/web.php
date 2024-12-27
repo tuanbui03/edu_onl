@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,9 +25,9 @@ Route::get('/courses', function () {
     return view('courses');
 })->name('courses');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+// Route::get('/login', function () {
+//     return view('login');
+// })->name('login');
 
 Route::get('/playlist', function () {
     return view('playlist');
@@ -63,10 +65,17 @@ Route::get('/watch_video', function () {
 
 
 
+Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('admin/login', [LoginController::class, 'login']);
+Route::post('admin/logout', [LoginController::class, 'logout'])->name('logout');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('admin', function () {
+        return view('admin.index');
+    })->name('admin.index');
+});
 
-Route::get('admin/login', function () {
-    return view('admin/login');
-})->name('login');
+
+
 
 Route::get('admin/index', function () {
     return view('admin/index');

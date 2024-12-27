@@ -140,3 +140,6 @@ INSERT INTO comments (user_id, video_id, content, created_at, updated_at) VALUES
 (3, 2, 'This helped me a lot, thank you!', NOW(), NOW()),
 (4, 2, 'Awesome tutorial!', NOW(), NOW()),
 (5, 3, 'Can you make more videos on this', NOW(), NOW());
+
+use edu_onl;
+DROP TABLE IF EXISTS users;
